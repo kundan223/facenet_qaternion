@@ -50,3 +50,4 @@
 - https://github.com/davidsandberg/facenet
 - https://arxiv.org/abs/1503.03832
 - https://arxiv.org/abs/1703.07737
+# facenet_qaternion-
