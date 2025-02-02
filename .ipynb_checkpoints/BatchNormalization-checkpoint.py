@@ -24,7 +24,7 @@ class QuaternionBatchNorm2d(Module):
         self.num_features = num_features // 4
         self.gamma_init = gamma_init
         self.beta_param = beta_param
-        self.gamma = Parameter(torch.full([1, self.num_features, 1, 1], self.gamma_init))
+        self.gamma = Parameter(torch.full([1, self.num_features , 1, 1], self.gamma_init))
         self.beta = Parameter(torch.zeros(1, self.num_features * 4, 1, 1), requires_grad=self.beta_param)
         self.eps = torch.tensor(1e-5)
         
@@ -33,13 +33,13 @@ class QuaternionBatchNorm2d(Module):
         self.momentum = momentum
 
     def reset_parameters(self):
-        self.gamma = Parameter(torch.full([1, self.num_features, 1, 1], self.gamma_init))
+        self.gamma = Parameter(torch.full([1, self.num_features // 4, 1, 1], self.gamma_init))
         self.beta = Parameter(torch.zeros(1, self.num_features * 4, 1, 1), requires_grad=self.beta_param)
 
     def forward(self, input):
         # print(self.training)
         if self.training:
-            quat_components = torch.chunk(input, 4, dim=0)
+            quat_components = torch.chunk(input, 4, dim=1)
     
             r, i, j, k = quat_components[0], quat_components[1], quat_components[2], quat_components[3]
             

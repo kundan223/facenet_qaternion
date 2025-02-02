@@ -12,7 +12,7 @@ from data_loader import get_dataloader
 from datasets.write_csv_for_making_dataset import write_csv
 from eval_metrics import evaluate, plot_roc
 from loss import TripletLoss
-from models import FaceNetModel
+from model_modified import FaceNetModel
 from utils import ModelSaver, init_log_just_created
 
 parser = argparse.ArgumentParser(description='Face Recognition using Triplet Loss')
